@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Shrikhand&display=swap" rel="stylesheet">
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1 class="title">Hangman!</h1>
+                <h2 class="subtitle">The legend of Zim</h2>
+                <!-- <div class = "subtitle">The legend of Zim</div> -->
+                <!-- <nav id="nav_menu">
+                    <div class="wrapper">
+                        <ul>
+                        <li><a href="index.html">Login</a></li>
+                        <li><a href="gamepage.html">Game</a></li>
+                        <li><a href="leaderboard.html">Leaderboard</a></li>
+                        </ul>
+                    </div>
+                </nav> -->
+            </header>
+            <main>
+                <h1>
+                    Welcome!
+                </h1>
+                <h3>
+                    Please Login to Play
+                </h3>
+                <div class="login-page">
+                    <div class="form">
+                      <form class="login-form">
+                        <input type="text" id="user" placeholder="Username"/>
+                        <input type="password" id ="pass" placeholder="Password"/>
+                        <button type="button" onclick="login(document.getElementById('user').value, document.getElementById('pass').value)">login</button>
+                        <p class="message">Not registered? <a href="createAccount.html">Create an account</a></p>
+                      </form>
+                    </div>
+                  </div>
+            </main>
+        </div>
+    </body>
+    <script src="/scripts/login_manager.js"></script>
+    <script>
+        // if(localStorage.getItem("username") !== null){
+        //     window.location.href = "../gamepage.html";
+        // }
+    </script>
+</html>

@@ -1,0 +1,364 @@
+
+   
+<!doctype html>
+<html>
+  <head>
+    <script>
+        var generate_word = ()=>{
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            }
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/generator", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // store word to use for game and to send to /app/score/update after game
+
+                console.log(result);
+                console.log(JSON.parse(result).body.word);
+            }).catch(error => console.log('error', error));
+        }
+
+        var create_user = (username, password, email)=>{
+            // instantiate a headers object
+            var myHeaders = new Headers();
+            // add content type header to object
+            myHeaders.append("Content-Type", "application/json");
+            // using built in JSON utility package turn object to string and store in a variable
+            var raw = JSON.stringify({"username":username, "password":password, "email":email});
+            // create a JSON object with parameters for API call and store in a variable
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            // make API call with parameters and use promises to get response
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/user/new", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // if false prompt user to try again with a new username
+                // if true store username as global variable for future use 
+                console.log(result);
+                console.log(JSON.parse(result).body.success);
+            }).catch(error => console.log('error', error));
+        }
+
+        var update_email = (username, email)=> {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            var raw = JSON.stringify({"username":username, "email":email});
+            var requestOptions = {
+                method: "PATCH",
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/user/update/email", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // indicate that the email has been changed on the front-end
+                console.log(result);
+                console.log(JSON.parse(result).body.success);
+            }).catch(error => console.log('error', error));
+        }
+
+        var update_password = (username, password, new_password) => {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            var raw = JSON.stringify({"username":username, "password":password, "new_password":new_password});
+            var requestOptions = {
+                method: "PATCH",
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/user/update/password", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // if false prompt user to try again with new password
+                // if true indicate that password has been updated
+                console.log(result);
+                console.log(JSON.parse(result).body.success);
+            }).catch(error => console.log('error', error));
+        }
+
+        var get_user = (username)=>{
+            // figure out how to pass path parameter to API call
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            }
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/user/" + username, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // display user data to front-end
+                console.log(result);
+                console.log(JSON.parse(result).body.Item);
+            }).catch(error => console.log('error', error));
+        }
+
+        var delete_user = (username)=>{
+            // figure out how to pass path parameter to API call
+            var requestOptions = {
+                method: 'DELETE',
+                redirect: 'follow'
+            }
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/user/" + username, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // indicate whether user was deleted and navigate to log-in page
+                console.log(result);
+                console.log(JSON.parse(result).body.success);
+            }).catch(error => console.log('error', error));
+        }
+
+        var login = (username, password) => {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            var raw = JSON.stringify({"username":username, "password":password});
+            var requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/user/login", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // indicate whether the user was successfully logged in
+                // store username as global variable
+                console.log(result);
+                console.log(JSON.parse(result).body.success);
+            }).catch(error => console.log('error', error));
+        }
+
+        var get_score = (username)=>{
+            // figure out how to pass path parameter to API call
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            }
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/score/" + username, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // display score data on front-end
+                console.log(result);
+                console.log(JSON.parse(result).body.Item)
+            }).catch(error => console.log('error', error));
+        }
+
+        var delete_score = (username)=>{
+            // figure out how to pass path parameter to API call
+            var requestOptions = {
+                method: 'DELETE',
+                redirect: 'follow'
+            }
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/score/" + username, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // indicate whether user was deleted and navigate to log-in page
+                console.log(result);
+                console.log(JSON.parse(result).body.success);
+            }).catch(error => console.log('error', error));
+        }
+
+        var create_score = (username)=>{
+            // instantiate a headers object
+            var myHeaders = new Headers();
+            // add content type header to object
+            myHeaders.append("Content-Type", "application/json");
+            // using built in JSON utility package turn object to string and store in a variable
+            var raw = JSON.stringify({"username":username});
+            // create a JSON object with parameters for API call and store in a variable
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            // make API call with parameters and use promises to get response
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/score/new", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                // indicate success or failure to front-end
+                console.log(result);
+                console.log(JSON.parse(result).body.success);
+            }).catch(error => console.log('error', error));
+        }
+
+        var update_score = (username, score, word) => {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            var raw = JSON.stringify({"username":username, "score":score, "word":word});
+            var requestOptions = {
+                method: "PATCH",
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/score/update/", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+                console.log(JSON.parse(result).body.success);
+            }).catch(error => console.log('error', error));
+        }
+
+        var get_leaderboard = ()=>{
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            }
+            fetch("https://bjpskapus9.execute-api.us-east-1.amazonaws.com/dev/app/score/leaderboard", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+                console.log(JSON.parse(result).body);
+            }).catch(error => console.log('error', error));
+        }
+
+    </script>
+    <style>
+        div {
+            padding: 5%;
+        }
+
+    </style>
+  </head>
+  <body>
+      <div>
+          <h1>HANGMAN API</h1>
+          <ul>
+              <li>The javascript code in this page contains methods that can be used within the frontend to invoke each API call with the proper parameters and get output in the correct format</li>
+              <li>Use this page to test API calls and their expected output</li>
+              <li>Each method will return output to the console. View output in the console within the developer tools.</li>
+              <li>Access individual properties using "JSON.parse(result).body.[attribute]"</li>
+          </ul>
+      </div>
+
+      <hr>
+
+      <div>
+          <h1>/app/generator</h1>
+          <h3>GET</h3>
+          <button type="button" onclick="generate_word()">generate_word</button>
+      </div>
+
+      <hr>
+
+      <div>
+        <h1>/app/user/new</h1>
+        <h3>POST</h3>
+        <label>username: </label>
+        <input type="text" id="create_user_username">
+        <label>password: </label>
+        <input type="text" id="create_user_password">
+        <label>email: </label>
+        <input type="text" id="create_user_email">
+        <button type="button" onclick="create_user(document.getElementById('create_user_username').value, document.getElementById('create_user_password').value, document.getElementById('create_user_email').value)">create_user</button>
+      </div>
+
+      <hr>
+
+      <div>
+          <h1>/app/user/update/email</h1>
+          <h3>PATCH</h3>
+          <label>username: </label>
+          <input type="text" id="update_email_username">
+          <label>email: </label>
+          <input type="text" id="update_email_email">
+          <button type="button" onclick="update_email(document.getElementById('update_email_username').value, document.getElementById('update_email_email').value)">update_email</button>
+      </div>
+
+      <hr>
+
+      <div>
+        <h1>/app/user/update/password</h1>
+        <h3>PATCH</h3>
+        <label>username: </label>
+        <input type="text" id="update_password_username">
+        <label>password: </label>
+        <input type="text" id="update_password_password">
+        <label>new_password: </label>
+        <input type="text" id="update_password_new_password">
+        <button type="button" onclick="update_password(document.getElementById('update_password_username').value, document.getElementById('update_password_password').value, document.getElementById('update_password_new_password').value)">update_password</button>
+      </div>
+
+      <hr>
+
+      <div>
+        <h1>/app/user/{username}</h1>
+        <h3>GET</h3>
+        <label>username: </label>
+        <input type="text" id="get_user_username">
+        <button type="button" onclick="get_user(document.getElementById('get_user_username').value)">get_user</button>
+        <h3>DELETE</h3>
+        <label>username: </label>
+        <input type="text" id="delete_user_username">
+        <button type="button" onclick="delete_user(document.getElementById('delete_user_username').value)">delete_user</button>
+      </div>
+
+      <hr>
+
+      <div>
+        <h1>/app/user/login</h1>
+        <h3>POST</h3>
+        <label>username: </label>
+        <input type="text" id="login_username">
+        <label>password: </label>
+        <input type="text" id="login_password">
+        <button type="button" onclick="login(document.getElementById('login_username').value, document.getElementById('login_password').value)">login</button>
+      </div>
+
+      <hr>
+
+      <div>
+        <h1>/app/score/{username}</h1>
+        <h3>GET</h3>
+        <label>username: </label>
+        <input type="text" id="get_score_username">
+        <button type="button" onclick="get_score(document.getElementById('get_score_username').value)">get_score</button>
+        <h3>DELETE</h3>
+        <label>username: </label>
+        <input type="text" id="delete_score_username">
+        <button type="button" onclick="delete_score(document.getElementById('delete_score_username').value)">delete_score</button>
+      </div>
+
+      <hr>
+
+      <div>
+        <h1>/app/score/new</h1>
+        <h3>POST</h3>
+        <label>username: </label>
+        <input type="text" id="create_score_username">
+        <button type="button" onclick="create_score(document.getElementById('create_score_username').value)">create_score</button>
+      </div>
+
+      <hr>
+
+      <div>
+        <h1>/app/score/update</h1>
+        <h3>PATCH</h3>
+        <label>username: </label>
+        <input type="text" id="update_score_username">
+        <label>score: </label>
+        <input type="text" id="update_score_score">
+        <label>word: </label>
+        <input type="text" id="update_score_word">
+        <button type="button" onclick="update_score(document.getElementById('update_score_username').value, document.getElementById('update_score_score').value, document.getElementById('update_score_word').value)">update_score</button>
+      </div>
+
+      <hr>
+
+      <div>
+        <h1>/app/score/leaderboard</h1>
+        <h3>GET</h3>
+        <button type="button" onclick="get_leaderboard()">Get Leaderboard</button>
+      </div>
+  </body>
+</html>

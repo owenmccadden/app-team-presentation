@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Shrikhand&display=swap" rel="stylesheet">
+        <title>Hangman! Leaderboard</title>
+    </head>
+    <style>
+        /* center the table */
+        /* add more padding and margin to table */
+        table {
+            margin: 0 auto;
+            padding: 10px;
+            /* increase table width */
+            width: 80%;
+        }
+
+        /* make the table rows alternate color */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+    <body onload="get_leaderboard()">
+        <div class="container">
+            <header>
+                <h1 class="title">Hangman!</h1>
+                <h2 class="subtitle">The legend of Zim</h2>
+                <!-- <nav id="nav_menu">
+                    <div class="wrapper">
+                        <ul>
+                        <li><a href="index.html">Login</a></li>
+                        <li><a href="gamepage.html">Game</a></li>
+                        <li><a href="leaderboard.html">Leaderboard</a></li>
+                        </ul>
+                    </div>
+                </nav> -->
+            </header>
+            <main>
+                <table class="table">
+                    <thead>
+                        <th>Username</th>
+                        <th>Top Score</th>
+                        <th>Longest Word Solved</th>
+                    </thead>
+                    <tbody id='data'>
+                        
+                    </tbody>
+                </table>
+            </main>
+            <footer>
+                <div class="field has-addons">
+                    <div class="control">
+                    <a onclick="reset_game()" type="button" class="button is-info" style= "padding-left: 1rem; margin-left: 10rem; margin-top: 4rem;">
+                        Play Again!
+                    </a>
+                    </div>
+                </div>
+                <div class="field has-addons">
+                    <div class="control">
+                    <a onclick="logout()" type="button" class="button is-info" style= "padding-left: 1rem; margin-left: 25rem; margin-top: 4rem;">
+                        Logout
+                    </a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+    <script src="/scripts/leaderboard.js"></script>
+</html>

@@ -1,0 +1,244 @@
+body, html {
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #A5C4D4;
+    font-family: 'Georgia';
+}
+.container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 0.4fr 0.5fr 2.1fr 2.1fr 0.5fr 0.4fr;
+    grid-template-rows: 0.6fr 1.8fr 1.1fr 0.5fr;
+    gap: 1px 1px;
+    grid-template-areas: ". . header header . ." ". main main main main ."". . footer footer . .";
+  }
+
+  /* make .title apear above .subtitle */
+
+  .title {
+    /* grid-area: header; */
+    background-color: #A5C4D4;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    color: #2E4372;
+    padding: 0.5em;
+  }
+
+  .subtitle {
+    /* grid-area: header; */
+    background-color: #A5C4D4;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    color: #3e8ed0;
+    padding: 0.5em;
+    /* align vertically */
+    align-self: center;
+  }
+
+
+  header {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    font-size: 2.3vw;
+    color: #200c09;
+  }
+
+  footer {
+      grid-area: footer;
+      display: flex;
+      font-size: 2.3vw;
+      color: #200c09
+  }
+
+  main {
+    grid-area: main;
+    text-align: center;
+    background-color: #7B6D8D ;
+    padding: 2vw;
+    margin: 0px;
+    border-width: 5px;
+    border-radius: .5vw;
+    border-style: solid;
+    border-color: #593F62;
+  }
+
+  img {
+    margin: 0;
+    width: 25%;
+    height: 50%;
+    padding-top: 10px;
+    padding-bottom: 100px;
+  }
+
+  div {
+    font-size: 1vw;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .wrapper {
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+
+  .facts {
+      text-align: left;
+  }
+
+
+
+#nav_menu ul {
+  list-style: none;
+  position: relative;
+  /* So the first submenu can be positioned within the main menu */
+}
+
+#nav_menu ul li {
+  float: left;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 1em;
+}
+
+#nav_menu ul {
+  width: 200%;
+  margin: 0;
+  padding: 0;
+}
+
+#nav_menu ul li {
+  width: 25%;
+}
+
+#nav_menu ul li a {
+  text-align: center;
+  display: block;
+  padding: 1em;
+  text-decoration: none;
+  background-color: #6f8d6d;
+  color: #200c09;
+  font-weight: bold;
+}
+
+#nav_menu ul li a:hover,
+#nav_menu ul li a:focus {
+  background-color: #647f62;
+  color: #ffebe8;
+}
+
+#nav_menu ul li:hover ul {
+  width: 100%;
+}
+
+#nav_menu ul li:hover ul li a {
+  display: block;
+  /* width: 178px; */
+  text-align: center;
+}
+
+.login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+  }
+  .form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  .form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #A5C4D4;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .form button:hover,.form button:active,.form button:focus {
+    background: #8499B1;
+  }
+  .form .message {
+    margin: 15px 0 0;
+    color: #8d8c8c;
+    font-size: 12px;
+  }
+  .form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  .form .register-form {
+    display: none;
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .container:before, .container:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .container .info {
+    margin: 50px auto;
+    text-align: center;
+  }
+  .container .info h1 {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 36px;
+    font-weight: 300;
+    color: #1a1a1a;
+  }
+  .container .info span {
+    color: #4d4d4d;
+    font-size: 12px;
+  }
+  .container .info span a {
+    color: #000000;
+    text-decoration: none;
+  }
+  .container .info span .fa {
+    color: #EF3B3A;
+  }
+
+  .poop {
+      color: black;
+  }
+
+  h1, h3 {
+    font-size: 2.3vw;
+    color: #200c09;
+  }
